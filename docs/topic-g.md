@@ -10,13 +10,15 @@
 
 > Member States should integrate different privacy-preserving technologies, such as zero knowledge proof, into the European Digital Identity Wallet. Those cryptographic methods should allow a relying party to validate whether a given statement based on the person’s identification data and attestation of attributes is true, without revealing any data on which that statement is based
 
-Recital 14 imposes no limitations on the type of statement a relying party may validate. It broadly applies to any statement derived from a person’s identification data or attributes. Recital 15 builds on this by outlining functional expectations for the wallet and identifying priority features:
+Notice that Recital 14 places no restriction on the type of statement a relying party may validate, nor on how such statements relate to identification data. This openness suggests that the provision applies to any claim derivable from a person’s identity attributes. Recital 15 builds on this by outlining functional expectations for the wallet and identifying features:
 
 > [Wallet users] should be empowered to securely request, select, combine, store, delete, share and present data related to their identity [...] while enabling selective disclosure of personal data. [...] aiming towards the highest level of security, privacy, user convenience [...].
 
-Note the emphasis on both functional requirements and strong privacy guarantees. [Section 4.1](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/discussion-topics/g-zero-knowledge-proof.md#41-expectations-from-zkp-systems) clarifies that while some privacy properties can be achieved via non-ZKP mechanisms (e.g., selective disclosure via hashes, unlinkability via batch issuance), certain privacy properties can only be ensured through ZKPs. This positions ZKPs as essential for the most advanced privacy needs, where simpler alternatives fall short, and may even simplify protocols overall.
+Recital 15 packs multiple goals into one breath: empower users to "request, select, combine, store, delete, share and present" identity data via selective disclosure, all while simultanously requireing the highest levels of security, privacy etc. No guidance is offered on how to resolve design tensions or tradeoffs.
 
-[Section 1 Article 5a](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401183#sct_1) lists functional requirements that a wallet must allow users to do. Several requirements have strong privacy expectations and/or implications:
+[Section 4.1](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/discussion-topics/g-zero-knowledge-proof.md#41-expectations-from-zkp-systems) provides clarity by first outlining what non-ZKP approaches can achieve—like verifier-unlinkable selective disclosure through batch issuance. It then pivots by stating that certain privacy properties can only be ensured through ZKP. Consider fully unlinkable attestations as an example. These demand presentations that expose no correlation handles that can be used to link presentations together. No practical non-ZKP solutions can meet this need. Where full unlinkability matters, ZKP is the only viable alternative.
+
+These strengths matter for several of the functional requirements stated in [Article 5a](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401183#sct_1):
 
 * Manage (request, obtain, select, combine, store, delete, share and present using selective disclosure) personal identification data possibly in combination with electronic attestations of attributes, to authenticate to service providers (4a).
 * Manage pseudonyms locally using their wallet (4b).
@@ -24,7 +26,9 @@ Note the emphasis on both functional requirements and strong privacy guarantees.
 * Meet assurance level high requirements (5d).
 * The PID must be bound to the user's EUDIW (5f).
 * No party shall be able to obtain data that allows transactions or user behavior to be tracked, linked, or correlated after the issuance of an EAA (16a).
-* Ensure privacy preserving techniques which ensure unlinkability (the legal text requires *unlikeability* but it is likely safe to assume they meant unlinkability) (16b).
+* Ensure privacy preserving techniques which ensure unlinkability (16b).
+
+These requirements, especially requirements for unlinkability, device binding, and pseudonym management, collectively position ZKP as a strong candidate for high privacy scenarios.
 
 > NOTE: The legal text does not define the concept of unlinkability. Instead, the Discussion Paper on Topic G refers to ETSI TR 119 476 for a formal definition. According to ETSI, unlinkability is defined as a privacy property that persists across multiple presentations (multi-show unlinkability). It can take two forms:
 > 1) Verifier unlinkability: When data observed by relying parties cannot be linked across presentations, and
