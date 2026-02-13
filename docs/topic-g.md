@@ -4,6 +4,8 @@
 
 ## Legal requirements
 
+### Regulation (EU) 2024/1183
+
 [Regulation (EU) 2024/1183](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401183) discusses the use of privacy-preserving technologies in Recital 14:
 
 > Member States should integrate different privacy-preserving technologies, such as zero knowledge proof, into the European Digital Identity Wallet. Those cryptographic methods should allow a relying party to validate whether a given statement based on the person’s identification data and attestation of attributes is true, without revealing any data on which that statement is based
@@ -12,7 +14,19 @@ Recital 14 imposes no limitations on the type of statement a relying party may v
 
 > [Wallet users] should be empowered to securely request, select, combine, store, delete, share and present data related to their identity [...] while enabling selective disclosure of personal data. [...] aiming towards the highest level of security, privacy, user convenience [...].
 
-Note both the functional requirements and the expectation of strong privacy guarantees. Where design tensions exist between privacy and e.g., user convenience, a ZKP solution should prioritize privacy. Users may need to tolerate e.g., increased latency in exchange for stronger privacy protections.
+Note both the functional requirements and the expectation of strong privacy guarantees. Where design tensions exist between privacy and e.g., user convenience, a ZKP solution should prioritize privacy (solutions for other prioritizations). Users may need to tolerate e.g., increased latency in exchange for stronger privacy protections.
+
+[Section 1 Article 5a](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401183#sct_1) lists functional requirements that a wallet must allow users to do. Several requirements have strong privacy expectations and/or implications:
+
+* Manage (request, obtain, select, combine, store, delete, share and present using selective disclosure) personal identification data possibly in combination with electronic attestations of attributes, to authenticate to service providers (4a).
+* Manage pseudonyms locally using their wallet (4b).
+* Not provide any information to TSPs of EAAs about the use of EAAs (5b).
+* Meet assurance level high requirements (5d).
+* The PID must be bound to the user's EUDIW (5f).
+* No party shall be able to obtain data that allows transactions or user behavior to be tracked, linked, or correlated after the issuance of an EAA (16a).
+* Ensure privacy preserving techniques which ensure unlinkability (the legal text requires *unlikeability* but it is likely safe to assume they meant unlinkability) (16b).
+
+##
 
 The document identifies privacy properties relevant to digital identity systems (both under collusion scenarios and under data breach scenarios):
 
