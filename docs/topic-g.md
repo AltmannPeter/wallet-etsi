@@ -45,7 +45,7 @@ Instead, guidance is offered by examining the need for privacy across use cases.
 
 > enable privacy preserving techniques which ensure unlinkability where the electronic attestations of attributes do not require the identification of the wallet user, when presenting attestations or person identification data across different wallet-relying parties. - [CIR 2024/2982](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402982) Article 3, 10
 
-Topic G lists use cases where ZKP shall be used once available:
+One way to elicit ZKP requirement is thus by analyzing use case where user identification is not required. Topic G lists use cases where "ZKP shall be used once available":
 
 * **Selective disclosure of identity attributes**. Use cases where the user needs to prove that they possess a PID or attestation that includes a specific attribute, or a valid predicate of this attribute, without revealing any additional information about their identity may use a ZKP scheme. Such a scheme shall provide a proof that:
   1. the PID or attestation includes the revealed attribute (or predicate thereof)
@@ -55,7 +55,7 @@ Topic G lists use cases where ZKP shall be used once available:
 * **Proof of possession of an attestatio type**. In some use cases, it may be enough that the user proves that they are in possession of a particular attestation type. For instance, stores offering various discounts to certain groups of users, e.g., students, may require only proof of possession of a student card.
 
 
-> NOTE TO SELF: SOME OF THE ABOVE REQUIRE ZKP BUT NOT ALL. USE CASE REQUIREMENTS SHOULD BE FRAMED MORE FROM THE CAPABILITIES THAT ZKP CAN OFFER THAT OTHER USE CASES CANNOT.
+> NOTE TO SELF: SOME OF THE ABOVE REQUIRE ZKP BUT NOT ALL. USE CASE REQUIREMENTS SHOULD BE FRAMED MORE FROM THE CAPABILITIES THAT ZKP CAN OFFER THAT OTHER USE CASES CANNOT. AND SOME USE CASES ARE NOT USE CASES BUT CAPABILITIES. SIGH.
 
 
 
