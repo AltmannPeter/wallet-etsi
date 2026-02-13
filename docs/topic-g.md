@@ -14,7 +14,7 @@ Recital 14 imposes no limitations on the type of statement a relying party may v
 
 > [Wallet users] should be empowered to securely request, select, combine, store, delete, share and present data related to their identity [...] while enabling selective disclosure of personal data. [...] aiming towards the highest level of security, privacy, user convenience [...].
 
-Note both the functional requirements and the expectation of strong privacy guarantees. Where design tensions exist between privacy and e.g., user convenience, a ZKP solution should prioritize privacy (solutions for other prioritizations). Users may need to tolerate e.g., increased latency in exchange for stronger privacy protections.
+Note the emphasis on both functional requirements and strong privacy guarantees. [Section 4.1](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/discussion-topics/g-zero-knowledge-proof.md#41-expectations-from-zkp-systems) clarifies that while some privacy properties can be achieved via non-ZKP mechanisms (e.g., selective disclosure via hashes, unlinkability via batch issuance), certain privacy properties can only be ensured through ZKPs. This positions ZKPs as essential for the most advanced privacy needs, where simpler alternatives fall short, and may even simplify protocols overall.
 
 [Section 1 Article 5a](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401183#sct_1) lists functional requirements that a wallet must allow users to do. Several requirements have strong privacy expectations and/or implications:
 
@@ -26,7 +26,43 @@ Note both the functional requirements and the expectation of strong privacy guar
 * No party shall be able to obtain data that allows transactions or user behavior to be tracked, linked, or correlated after the issuance of an EAA (16a).
 * Ensure privacy preserving techniques which ensure unlinkability (the legal text requires *unlikeability* but it is likely safe to assume they meant unlinkability) (16b).
 
-##
+> NOTE: The legal text does not define the concept of unlinkability. Instead, the Discussion Paper on Topic G refers to ETSI TR 119 476 for a formal definition. According to ETSI, unlinkability is defined as a privacy property that persists across multiple presentations (multi-show unlinkability). It can take two forms:
+> 1) Verifier unlinkability: When data observed by relying parties cannot be linked across presentations, and
+> 2) Full unlinkability: When linkage remains impossible even if issuers and verifiers collude or share information.
+
+## ZKP requirements
+
+Topic G outlines ZKP capabilities that may serve as building blocks for EUDIW. These ZKP building blocks are implemented using underlying proof systems for various relations (e.g. polynomial commitment openings, inner-product arguments, and generic linear-relation proofs) and include inequality and range proofs, set (non-)membership proofs, and various discrete-log knowledge proofs, to name a few. The building blocks can then be combined to implement higher-level statements relevant for the EUDIW, including but not limited to age proofs, validity status checks, issuer hiding, pseudonymous authentication, combined presentations from multiple attestations, and blind issuance.
+
+The Topic G text describes ZKP use cases and privacy properties at a functional level (what a ZKP scheme should enable), but it does not introduce an explicit layering between underlying relation-level proof systems, intermediate building-block gadgets, and their composition into higher-level statements. As a result, it is not entirely clear from Topic G alone what concrete ZKP requirements are implied or which specific ZKP capabilities implementations are expected to support.
+
+Instead, guidance is offered by examining the need for privacy across use cases. Topic G notes that some use cases—such as opening a bank account—may require full identity verification rendering unlinkability requirements moot. Others only need proof of a specific attribute or property, such as an age proof. This distinction is recognized by the Regulation. In several places, the legal text mandates support for various techniques and solutions that prevent linkability when user identification is not required.
+
+> Relying parties shall not refuse the use of pseudonyms, where the identification of the user is not required by Union or national law. - [Regulation (EU) 2024/1183](https://eur-lex.europa.eu/eli/reg/2024/1183/oj/eng) Article 5b, 9
+
+> enable privacy preserving techniques which ensure unlinkability, where the attestation of attributes does not require the identification of the user. - 910/2014 Article 5a, 16(b)
+> Providers of person identification data shall enable privacy preserving techniques which ensure unlinkability where the electronic attestations of attributes do not require the identification of the user. - [CIR 2024/2977](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402977) Article 5, 8
+
+> enable privacy preserving techniques which ensure unlinkability where the electronic attestations of attributes do not require the identification of the wallet user, when presenting attestations or person identification data across different wallet-relying parties. - [CIR 2024/2982](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402982) Article 3, 10
+
+Topic G lists use cases where ZKP shall be used once available:
+
+* **Selective disclosure of identity attributes**. Use cases where the user needs to prove that they possess a PID or attestation that includes a specific attribute, or a valid predicate of this attribute, without revealing any additional information about their identity may use a ZKP scheme. Such a scheme shall provide a proof that:
+  1. the PID or attestation includes the revealed attribute (or predicate thereof)
+  2. a validity status proof of the PID or attestation that includes the attribute
+  3. the PID or attestation is issued by a trusted issuer, optionally without revealing the issuer, and
+  4. The PID or attestation is is bound to a key stored in the WSCD of the wallet unit.
+* **Proof of possession of an attestatio type**. In some use cases, it may be enough that the user proves that they are in possession of a particular attestation type. For instance, stores offering various discounts to certain groups of users, e.g., students, may require only proof of possession of a student card.
+
+
+> NOTE TO SELF: SOME OF THE ABOVE REQUIRE ZKP BUT NOT ALL. USE CASE REQUIREMENTS SHOULD BE FRAMED MORE FROM THE CAPABILITIES THAT ZKP CAN OFFER THAT OTHER USE CASES CANNOT.
+
+
+
+
+
+
+Such capabilities can be leveraged in various ways to support privacy-preserving revocation, issuer hiding, pseudonyms
 
 The document identifies privacy properties relevant to digital identity systems (both under collusion scenarios and under data breach scenarios):
 
