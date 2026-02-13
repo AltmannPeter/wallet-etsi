@@ -34,6 +34,21 @@ These requirements, especially requirements for unlinkability, device binding, a
 > 1) Verifier unlinkability: When data observed by relying parties cannot be linked across presentations, and
 > 2) Full unlinkability: When linkage remains impossible even if issuers and verifiers collude or share information.
 
+### Deriving ZKP requirements
+
+Below is a table eliciting ZKP requirements from the above discussed sources.
+
+| Source                                                                                 | Mapping                                                                         | ZKP requirement                   | Use case example                                                          |
+|----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------------------|---------------------------------------------------------------------------|
+| Recital 14 (validate whether a statement is true without revealing anything else)      | Completeness, soundness, zero-knowledgeness                                     | These are core ZKP properties     | N/A                                                                       |
+| Recital 14 + Topic G ("given statement" from attributes; implied for derivable claims) | Various predicate proofs about attribute values                                 | Common predicates (to be defined) | Age proofs (e.g., 18 < age < 65) Set membership proofs (e.g., is student) |
+| Article 5a (4a, 5b, 16) + Topic G section 4.1 (full unlinkability)                     | Randomized proofs across presentations to avoid correlation handles             | Multi-show full unlinkability     | All use cases where user does not reveal identity                         |
+| Article 5a(4a) (combine PID + electronic attestations)                                 | Prove statements from multiple sources and prove that they are properly paired  | Combined presentation             | Vaccination proof (vaccination card linked to PID)                        |
+| Article 5a(5f) (PID bound to user's EUDIW)                                             | Prove that a signature validates with public key in the attestation's PoP field | Hardware bound PoP                | LoA High PID presentation                                                 |
+| Article 5a(4b) + Topic G Section 4.1 (pseudonym management)                            | Prove a pseudonym was derived from an attribute in an attestation               | Pseudonym derivation              | Identity-bound stable pseudonyms                                          |
+
+Additional ZKP requirements in Topic G are explored next.
+
 ## ZKP requirements
 
 Topic G outlines ZKP capabilities that may serve as building blocks for EUDIW. These ZKP building blocks are implemented using underlying proof systems for various relations (e.g. polynomial commitment openings, inner-product arguments, and generic linear-relation proofs) and include inequality and range proofs, set (non-)membership proofs, and various discrete-log knowledge proofs, to name a few. The building blocks can then be combined to implement higher-level statements relevant for the EUDIW, including but not limited to age proofs, validity status checks, issuer hiding, pseudonymous authentication, combined presentations from multiple attestations, and blind issuance.
