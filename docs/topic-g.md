@@ -51,9 +51,7 @@ Additional ZKP requirements in Topic G are explored next.
 
 ## ZKP requirements
 
-The Topic G text describes ZKP use cases and privacy properties only at a functional level (what a ZKP scheme should enable), or by mentioning certain higher-level statements relevant for the EUDIW, including but not limited to age proofs, validity status checks, issuer hiding, pseudonymous authentication, combined presentations from multiple attestations, and blind issuance.. It is thus unclear what the concrete ZKP requirements are.
-
-Analyzing use cases offers some guidance. Topic G notes that some use cases—such as opening a bank account—may require full identity verification rendering unlinkability requirements moot. Others only need proof of a specific attribute or property, such as an age proof. This distinction is recognized by the Regulation:
+It is necessary to distinguish between use cases that require full identity verification, where unlinkability is unnecessary, and those that require attribute-specific proofs (e.g., age). This distinction aligns with the Regulation:
 
 > Relying parties shall not refuse the use of pseudonyms, where the identification of the user is not required by Union or national law. - [Regulation (EU) 2024/1183](https://eur-lex.europa.eu/eli/reg/2024/1183/oj/eng) Article 5b, 9
 
@@ -63,42 +61,31 @@ Analyzing use cases offers some guidance. Topic G notes that some use cases—su
 
 > enable privacy preserving techniques which ensure unlinkability where the electronic attestations of attributes do not require the identification of the wallet user, when presenting attestations or person identification data across different wallet-relying parties. - [CIR 2024/2982](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402982) Article 3, 10
 
-One way to elicit ZKP requirement is thus by analyzing use case where user identification is not required. Topic G provides some suggestions:
+Where full identification is not required, a ZKP scheme must enable the Wallet to demonstrate the following without compromising user privacy:
 
-* **Selective disclosure of identity attributes**. Use cases where the user needs to prove that they possess a PID or attestation that includes a specific attribute, or a valid predicate of this attribute, without revealing any additional information about their identity may use a ZKP scheme.
-* **Proof of possession of an attestatio type**. In some use cases, it may be enough that the user proves that they are in possession of a particular attestation type. For instance, stores offering various discounts to certain groups of users, e.g., students, may require only proof of possession of a student card.
-* **Pseudonymous authentication**. Service providers may have account management needs (returning customer, known-offender matching, account recovery etc.) that can be met using ZKP. A pseudonym can be derived using an attribute from a user attestation and a public context to derive a service-specific pseudonym. Non-ZKP ways cannot meet this need without some tradeoff (e.g., requiring a third party to do the derivation, revealing the presentation target to the issuer, or limiting the number of pseudonyms the user can have etc.).
+* **PID/(Q)EAA & status integrity**: The Person Identification Data (PID) or attestation contains the disclosed attribute or its corresponding predicate, has a valid status, and originates from a trusted issuer (optionally withholding the issuer’s identity).
+* **Validity & origin**: The attestation possesses a valid status proof and originates from a trusted issuer, with the option to withhold the issuer’s specific identity.
+* **Cryptographic binding**: The attestation is bound to a key stored within a WSCD to ensure hardware-backed PoP. The PoP must not reveal correlation handles (e.g., static PoP keys).
+* **Pseudonym management**: The scheme must support pseudonym seeds and derivation such that the issuer cannot derive the resulting pseudonym, even if the seed is known or used during issuance.
+* **Operational compliance**: Implementations must maintain Level of Assurance (LoA) High, minimize latency for remote/proximity flows, and ensure compatibility with ISO/IEC 18013-5 or SD-JWT VC formats.
 
-From these use cases, Topic G derives properties that a ZKP solution must have. A ZKP scheme must provide a proof that:
+Topic G concludes with HLRs to be added to Annex 2. A ZKP scheme:
 
-1. the PID or attestation includes the revealed attribute (or predicate thereof)
-2. a validity status proof of the PID or attestation that includes the attribute
-3. the PID or attestation is issued by a trusted issuer, optionally without revealing the issuer, and
-4. The PID or attestation is is bound to a key stored in the WSCD of the wallet unit.
-5. The pseudonym seed is present in a user attestation without revealing this seed
-6. The pseudonym seed is hidden from the attestation issuer
-
-> This text ignores requirement 6 as this is not always desirable. Unmaskability is a requirement only in certain pseudonym use cases and is not generally desirable. Also, it does not require blind issuance to satisfy, but can be met with other mechanisms. A better requirement would be to state that the issuer cannot derive the pseudonym as opposed to not knowing the seed.
-
-The document further details some solution constraints:
-
-1. Any solution must support privacy-preserving device binding. Specifically, a WU must prove possession of a valid attestation bound to a WSCD without revealing a correlation handle (e.g., PoP key) used for the binding.
-2. The solution must work both in remote and proximity flows.
-3. The solution must consider latency constraints for the context it is intended for.
-4. Avoid excessive proof size or auxiliry data.
-5. Not introduce tracking risks through additional communication.
-
-Integration considerations mention that a ZKP deployment may require changes to issuance and presentation protocols, metadata extensions, public parameter distribution, compatability with existing attestation formats, and support for already issued attestations.
-
-Includes a set of HLR:
-
-1. Supports selective disclosure, validity, revocation, device binding, and optional issuer hiding.
-2. Supports proof of possession of attestations.
-3. Supports privacy-preserving attestation–PID binding.
-4. Supports pseudonym derivation using hidden user attributes.
-5. Is usable in both remote and proximity contexts without degrading service purpose.
-6. Works with already issued credentials.
-7. Introduces no tracking vectors.
-8. Uses recognised standardised cryptographic algorithms.
-9. Does not prevent high Level of Assurance user authentication.
-
+| Requirement | Strength |
+| :--- | :--- |
+| Support attribute equality proofs. | **MUST** |
+| Support attribute predicate proofs. | **MUST** |
+| Support attribute equality proofs between multiple attestations. | **MUST** |
+| Support non-expiration proofs. | **MUST** |
+| Support validity status proofs. | **MUST** |
+| Support hardware-bound PoP proofs without revealing correlation handles. | **MUST** |
+| Support blind issuance of attestations. | **MUST** |
+| Ensure full transaction unlinkability. | **MUST** |
+| Maintain Level of Assurance (LoA) High. | **MUST** |
+| Support both remote and proximity flow interactions. | **MUST** |
+| Introduce latency detrimental to the user experience. | **MUST NOT** |
+| Support ISO/IEC 18013-5 or SD-JWT VC attestation formats. | **SHOULD** |
+| Use only algorithms recognized by European Commission standards. | **MUST** |
+| Support pseudonym derivation from a user attribute and a specific context. | **SHOULD** |
+| Support binding an attestation to a PID. | **SHOULD** |
+| Support proof of valid issuer without revealing the specific issuer identity. | **SHOULD** |
