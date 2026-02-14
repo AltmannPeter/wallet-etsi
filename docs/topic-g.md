@@ -51,58 +51,34 @@ Additional ZKP requirements in Topic G are explored next.
 
 ## ZKP requirements
 
-Topic G outlines ZKP capabilities that may serve as building blocks for EUDIW. These ZKP building blocks are implemented using underlying proof systems for various relations (e.g. polynomial commitment openings, inner-product arguments, and generic linear-relation proofs) and include inequality and range proofs, set (non-)membership proofs, and various discrete-log knowledge proofs, to name a few. The building blocks can then be combined to implement higher-level statements relevant for the EUDIW, including but not limited to age proofs, validity status checks, issuer hiding, pseudonymous authentication, combined presentations from multiple attestations, and blind issuance.
+The Topic G text describes ZKP use cases and privacy properties only at a functional level (what a ZKP scheme should enable), or by mentioning certain higher-level statements relevant for the EUDIW, including but not limited to age proofs, validity status checks, issuer hiding, pseudonymous authentication, combined presentations from multiple attestations, and blind issuance.. It is thus unclear what the concrete ZKP requirements are.
 
-The Topic G text describes ZKP use cases and privacy properties at a functional level (what a ZKP scheme should enable), but it does not introduce an explicit layering between underlying relation-level proof systems, intermediate building-block gadgets, and their composition into higher-level statements. As a result, it is not entirely clear from Topic G alone what concrete ZKP requirements are implied or which specific ZKP capabilities implementations are expected to support.
-
-Instead, guidance is offered by examining the need for privacy across use cases. Topic G notes that some use cases—such as opening a bank account—may require full identity verification rendering unlinkability requirements moot. Others only need proof of a specific attribute or property, such as an age proof. This distinction is recognized by the Regulation. In several places, the legal text mandates support for various techniques and solutions that prevent linkability when user identification is not required.
+Analyzing use cases offers some guidance. Topic G notes that some use cases—such as opening a bank account—may require full identity verification rendering unlinkability requirements moot. Others only need proof of a specific attribute or property, such as an age proof. This distinction is recognized by the Regulation:
 
 > Relying parties shall not refuse the use of pseudonyms, where the identification of the user is not required by Union or national law. - [Regulation (EU) 2024/1183](https://eur-lex.europa.eu/eli/reg/2024/1183/oj/eng) Article 5b, 9
 
 > enable privacy preserving techniques which ensure unlinkability, where the attestation of attributes does not require the identification of the user. - 910/2014 Article 5a, 16(b)
+
 > Providers of person identification data shall enable privacy preserving techniques which ensure unlinkability where the electronic attestations of attributes do not require the identification of the user. - [CIR 2024/2977](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402977) Article 5, 8
 
 > enable privacy preserving techniques which ensure unlinkability where the electronic attestations of attributes do not require the identification of the wallet user, when presenting attestations or person identification data across different wallet-relying parties. - [CIR 2024/2982](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402982) Article 3, 10
 
-One way to elicit ZKP requirement is thus by analyzing use case where user identification is not required. Topic G lists use cases where "ZKP shall be used once available":
+One way to elicit ZKP requirement is thus by analyzing use case where user identification is not required. Topic G provides some suggestions:
 
-* **Selective disclosure of identity attributes**. Use cases where the user needs to prove that they possess a PID or attestation that includes a specific attribute, or a valid predicate of this attribute, without revealing any additional information about their identity may use a ZKP scheme. Such a scheme shall provide a proof that:
-  1. the PID or attestation includes the revealed attribute (or predicate thereof)
-  2. a validity status proof of the PID or attestation that includes the attribute
-  3. the PID or attestation is issued by a trusted issuer, optionally without revealing the issuer, and
-  4. The PID or attestation is is bound to a key stored in the WSCD of the wallet unit.
+* **Selective disclosure of identity attributes**. Use cases where the user needs to prove that they possess a PID or attestation that includes a specific attribute, or a valid predicate of this attribute, without revealing any additional information about their identity may use a ZKP scheme.
 * **Proof of possession of an attestatio type**. In some use cases, it may be enough that the user proves that they are in possession of a particular attestation type. For instance, stores offering various discounts to certain groups of users, e.g., students, may require only proof of possession of a student card.
+* **Pseudonymous authentication**. Service providers may have account management needs (returning customer, known-offender matching, account recovery etc.) that can be met using ZKP. A pseudonym can be derived using an attribute from a user attestation and a public context to derive a service-specific pseudonym. Non-ZKP ways cannot meet this need without some tradeoff (e.g., requiring a third party to do the derivation, revealing the presentation target to the issuer, or limiting the number of pseudonyms the user can have etc.).
 
+From these use cases, Topic G derives properties that a ZKP solution must have. A ZKP scheme must provide a proof that:
 
-> NOTE TO SELF: SOME OF THE ABOVE REQUIRE ZKP BUT NOT ALL. USE CASE REQUIREMENTS SHOULD BE FRAMED MORE FROM THE CAPABILITIES THAT ZKP CAN OFFER THAT OTHER USE CASES CANNOT. AND SOME USE CASES ARE NOT USE CASES BUT CAPABILITIES. SIGH.
+1. the PID or attestation includes the revealed attribute (or predicate thereof)
+2. a validity status proof of the PID or attestation that includes the attribute
+3. the PID or attestation is issued by a trusted issuer, optionally without revealing the issuer, and
+4. The PID or attestation is is bound to a key stored in the WSCD of the wallet unit.
+5. The pseudonym seed is present in a user attestation without revealing this seed
+6. The pseudonym seed is hidden from the attestation issuer
 
-
-
-
-
-
-Such capabilities can be leveraged in various ways to support privacy-preserving revocation, issuer hiding, pseudonyms
-
-The document identifies privacy properties relevant to digital identity systems (both under collusion scenarios and under data breach scenarios):
-
-1. Selective disclosure
-2. Relying party unlinkability
-3. Full unlinkability
-4. Range proofs
-5. Privacy-preserving revocation
-6. Issuer hiding
-7. Pseudonymity
-8. Composite proofs
-9. Blind issuance
-10. Conditional disclosure
-
-The document then defines scenarios where ZKP SHALL or SHOULD be used once available:
-
-1. Selective disclosure of attributes
-2. Proof of personhood
-3. Proof of attestation type
-4. Privacy preserving binding betewen an attestation and the PID
-5. Privacy-preserving pseudonym derivation for relying parties
+> This text ignores requirement 6 as this is not always desirable. Unmaskability is a requirement only in certain pseudonym use cases and is not generally desirable. Also, it does not require blind issuance to satisfy, but can be met with other mechanisms. A better requirement would be to state that the issuer cannot derive the pseudonym as opposed to not knowing the seed.
 
 The document further details some solution constraints:
 
