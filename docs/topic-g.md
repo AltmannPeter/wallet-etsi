@@ -1,10 +1,10 @@
-# ZKP requirements from Topic G
+# Zero-Knowledge Proof Requirements Derived from Topic G
 
 [Topic G](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/discussion-topics/g-zero-knowledge-proof.md) defines HLR for integrating ZKP into the EUDIW ARF. It evaluates ZKP as a privacy-enhancing technology and specifices foundational requirements for its future integration. It aligns technical requirements with legal mandates on selective disclosure, unlinkability, and anti-profiling obligations.
 
-## Legal requirements
+## Legal Basis for ZKP Integration
 
-### Regulation (EU) 2024/1183
+### Expectations in Regulation (EU) 2024/1183
 
 [Regulation (EU) 2024/1183](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401183) discusses the use of privacy-preserving technologies in Recital 14:
 
@@ -34,9 +34,9 @@ These requirements, especially requirements for unlinkability, device binding, a
 > 1) Verifier unlinkability: When data observed by relying parties cannot be linked across presentations, and
 > 2) Full unlinkability: When linkage remains impossible even if issuers and verifiers collude or share information.
 
-### Deriving ZKP requirements
+### Derived ZKP requirements from the legal text
 
-Below is a table eliciting ZKP requirements from the above discussed sources.
+Below is a table deriving ZKP requirements from the above discussed sources.
 
 | Source                                                                                 | Mapping                                                                         | ZKP requirement                   | Use case example                                                          |
 |----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------------------|---------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ Below is a table eliciting ZKP requirements from the above discussed sources.
 
 Additional ZKP requirements in Topic G are explored next.
 
-## ZKP requirements
+## ZKP Requirements in Non-Identification Scenarios
 
 It is necessary to distinguish between use cases that require full identity verification, where unlinkability is unnecessary, and those that require attribute-specific proofs (e.g., age). This distinction aligns with the Regulation:
 
