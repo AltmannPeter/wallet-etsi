@@ -4,18 +4,12 @@
 
 The following normalized requirements are derived from `ZKP_01`:
 
-ZKP_01.1: The ZKP scheme SHALL ensure that any generated proof discloses no information beyond the explicitly proven statement(s).
-
-ZKP_01.2: The ZKP scheme SHALL support the generation of a proof that one or more specified attributes of a given credential satisfy specified values or predicates.
-
-ZKP_01.3: The ZKP scheme SHALL support the generation of a proof that a given credential is within its defined validity period at the time of verification.
-
-ZKP_01.4: The ZKP scheme SHALL support the generation of a proof that a given credential has not been revoked at the time of verification.
-
-ZKP_01.5: The ZKP scheme SHALL support the generation of a proof that a device-bound credential is bound to a non-exportable cryptographic key stored in tamper-resistant hardware.
-
-ZKP_01.6: The ZKP scheme SHOULD support the generation of a proof that a given credential was issued by a Provider that is a member of a defined trusted set, without revealing the identity of the Provider.
-
-
-
+| #        | Normalized requirement                                                                                                                                                                              |
+|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ZKP_01.1 | The ZKP scheme SHALL ensure that any generated proof does not enable a verifier or third party to derive information about the credential beyond the explicitly proven statement(s), within the security level defined by the applicable security specification.                                     |
+| ZKP_01.2 | The ZKP scheme SHALL support the generation of a proof that one or more specified attributes of a given credential satisfy specified values or predicates, where the attributes and predicates are determined at proof generation time.                                          |
+| ZKP_01.3 | The ZKP scheme SHALL support the generation of a proof that a given credential is within its defined validity period at the time of verification.                                                   |
+| ZKP_01.4 | The ZKP scheme SHALL support the generation of a proof that a given credential has not been revoked at the time of verification.                                                                    |
+| ZKP_01.5 | The ZKP scheme SHALL support the generation of a proof that a device-bound credential is bound to a non-exportable cryptographic key stored in tamper-resistant hardware.                           |
+| ZKP_01.6 | The ZKP scheme SHOULD support the generation of a proof that a given credential was issued by a Provider that is a member of a defined trusted set, without revealing the identity of the Provider. |
 
