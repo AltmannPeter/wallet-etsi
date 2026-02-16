@@ -21,8 +21,6 @@ The purpose of this text is to use Annex 2 as a base for normalized requirements
 
 Herein, ZKP requirements are derived that are atomic and well-formed (with guidance from IEEE 830) from the requirements in Topic 53.
 
-The following normalized requirements are derived from the requirement above (`ZKP_02, ZKP_03` are both special cases of `ZKP_01`):
-
 | #         | Normalized requirement                                                                                                                                                                              |
 |-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ZKP_01.01 | The ZKP scheme SHALL ensure that, within the security level defined by the applicable security specification, no party other than the prover can derive information about a credential beyond the explicitly proven statement(s). |
