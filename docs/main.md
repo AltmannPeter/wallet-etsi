@@ -56,7 +56,23 @@ ARF
 
 ### Notations
 
-## General concepts
+## 4. General provisions for ZKP Schemes 
+
+### GP for LoA H
+
+### GP for LoA S
+
+### QEAA
+
+### EAA
+
+## Possible General concepts of ZKP schemes (base it on 119 476-1)
+
+Extended more technical introduction
+
+Atomic and hash based 119 472-2 non zkp alternatives detailed therein. 
+
+## 5. Requirements for ZKP schemes
 
 ### ZKP for EAA
 
