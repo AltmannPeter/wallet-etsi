@@ -30,7 +30,10 @@ These strengths matter for several of the functional requirements stated in [Art
 
 These requirements, especially requirements for unlinkability, device binding, and pseudonym management, collectively position ZKP as a strong candidate for high privacy scenarios.
 
-> NOTE: The legal text does not define the concept of unlinkability. Article 5a, 16 offers guidance but is not complete as it only states that the EUDIW must not allow any "party, after the issuance of the attestation of attributes, to obtain data that allows transactions or user behaviour to be tracked, linked or correlated, or knowledge of transactions or user behaviour to be otherwise obtained, unless explicitly authorised by the user." In abscence of a clear definition, the Discussion Paper on Topic G refers to ETSI TR 119 476 for a formal definition. According to ETSI, unlinkability is defined as a privacy property that persists across multiple presentations (multi-show unlinkability). It can take two forms:
+> NOTE: The legal text does not define the concept of unlinkability. Article 5a, 16 offers guidance but is not complete as it only states that the EUDIW must not allow any
+> > "party, after the issuance of the attestation of attributes, to obtain data that allows transactions or user behaviour to be tracked, linked or correlated, or knowledge of transactions or user behaviour to be otherwise obtained, unless explicitly authorised by the user."
+
+> In abscence of a clear definition, the Discussion Paper on Topic G refers to ETSI TR 119 476 for a formal definition. According to ETSI, unlinkability is defined as a privacy property that persists across multiple presentations (multi-show unlinkability). It can take two forms:
 > 1) Verifier unlinkability: When data observed by relying parties cannot be linked across presentations, and
 > 2) Full unlinkability: When linkage remains impossible even if issuers and verifiers collude or share information.
 
