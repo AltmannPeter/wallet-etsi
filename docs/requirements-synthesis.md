@@ -7,6 +7,7 @@
 | Recital 14 Regulation (EU) 2024/1183 | A relying party must be able to validate a statement derived from identity attributes without learning anything beyond the truth value of that statement | Core ZKP properties (completeness, soundness, zero-knowledgeness) | N/A |
 | Recital 14 Regulation (EU) 2024/1183; Article 5(8) CIR 2024/2977; Topic G section 4.1 | Any claim derivable from identity attributes may be proven without revealing the underlying values | Common predicates | Age range proofs (e.g. 18 < age < 65); set membership proofs (e.g. is student proof, proof of valid issuer); proving non-expiration without reveal expiration value |
 | Article 5(7) CIR 2024/2977 | The validity status object must not itself include correlation handles or allow for behavioral mapping | Privacy-preserving revocation | The public revocation registry, or the validity status proof, does not expose any credential identifier |
+| CIR 2025/1569 Article 4(4) | Revocation techniques for QEAAs and public sector EAAs must not enable linkability or traceability of the holder | Privacy-preserving revocation | QEAA revocation status check that does not reveal usage patterns or link presentations to the same holder |
 | Recital (9) and Article 7(4) CIR 2024/2979; Topic G HLR | Validity status must be verifiable without exposing revocation identifiers | Privacy-preserving revocation | Proving wallet unit attestation validity without creating a correlation handle; proving that the presented attributes are from an attestation that has not been revoked |
 | Article 5(8) CIR 2024/2977 | Full PID presentation unlinkability when user identification is not required | Multi-show full unlinkability | All PID presentations where the user does not need to identify itself |
 | Article 3(10) CIR 2024/2982 | Unlinkability must be enabled at the wallet unit level for all attestation presentations where user identification is not required, across different relying parties | Multi-show full unlinkability | All attestation presentations across different relying parties where the user does not need to identify itself |
@@ -27,6 +28,18 @@
 | The ZKP scheme SHALL declare conformance to one or more performance tiers as defined in ETSI TS 119 476-2 | Topic G HLR | MUST |
 | The ZKP scheme SHALL support the generation of proofs for PID formatted in accordance with the PID Rulebook | Topic G HLR | MUST |
 | The ZKP scheme SHALL support the generation of proofs for (Q)EAAs formatted in accordance with their respective applicable Rulebooks | Topic G HLR | MUST |
+
+### ZKP requirements dervied from wallet threat register (CIR 2024/2981)
+
+| Threat | Legal source | Mapping | ZKP requirement |
+|--------|-------------|---------|-----------------|
+| TR29 — attacker identifies wallet user where identification is not required | Article 3(10) CIR 2024/2982; Article 5a(16) Regulation (EU) 2024/1183 | Presentations must not expose attributes or metadata that enable identification where identification is not required | Multi-show full unlinkability |
+| TR36 — multiple transactions linkable to the same person within or across relying parties | Article 5(8) CIR 2024/2977; Article 3(10) CIR 2024/2982; Article 5a(16) Regulation (EU) 2024/1183 | No observable element in a presentation may serve as a correlation handle across transactions, whether within a single relying party or across different relying parties | Multi-show full unlinkability |
+| TR37 — public revocation list reveals user attestation usage | Article 5(7) CIR 2024/2977; Article 7(4) CIR 2024/2979; CIR 2025/1569 Article 4(4) | Revocation status checks must not expose credential identifiers or allow behavioral mapping | Privacy-preserving revocation |
+| TR39 — attacker traces wallet users through unique or traceable identifiers | Article 5(8) CIR 2024/2977; Article 3(10) CIR 2024/2982 | No static or reusable identifier may appear across presentations | Multi-show full unlinkability |
+| TR83 — relying party derives identity beyond data shared with them | Recital 14 Regulation (EU) 2024/1183 | The ZKP scheme must not leak information beyond the truth value of the proven statement; zero-knowledgeness must hold against a single verifier | Zero-knowledgeness core property |
+| TR84 — colluding relying parties or PID providers derive identity beyond data known to them individually | Article 5a(16) Regulation (EU) 2024/1183; Topic G section 4.1 | Unlinkability must hold even under collusion between issuers and verifiers; full unlinkability as defined by ETSI TR 119 476 is required | Full unlinkability under collusion |
+| TR85 — attacker tracks user through PID where identification is not required | Article 5(8) CIR 2024/2977 | PID presentations must not expose correlation handles where identification is not required | Multi-show full unlinkability |
 
 ### Requirements without legal basis or that prescribe a solution-specific mechanism
 
