@@ -132,7 +132,7 @@ Enabled requirements related to cross-credential binding:
 
 | #         | Normalized cross-credential binding requirement |
 |-----------|------------------------------------------------|
-| ZKP_07.01 | The ZKP scheme SHOULD generate a proof that an attribute in an attestation and an attribute in a PID are equal. |
+| ZKP_07.01 | The ZKP scheme SHOULD generate a ZKP that an attribute in an attestation and an attribute in a PID are equal. |
 
 ## Implementation and conformance requirements
 
