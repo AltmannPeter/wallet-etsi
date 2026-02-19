@@ -5,7 +5,7 @@
 | Recital 14 Regulation (EU) 2024/1183 | A relying party must be able to validate a statement derived from identity attributes without learning anything beyond the truth value of that statement | Core ZKP properties (completeness, soundness, zero-knowledgeness) | N/A |
 | Recital 14 Regulation (EU) 2024/1183; Article 5(8) CIR 2024/2977; Topic G section 4.1 | Any claim derivable from identity attributes may be proven without revealing the underlying values | Common predicates | Age range proofs (e.g. 18 < age < 65); set membership proofs (e.g. is student proof, proof of valid issuer); proving non-expiration without reveal expiration value |
 | Article 5(7) CIR 2024/2977 | The validity status object must not itself include correlation handles or allow for behavioral mapping | Privacy-preserving revocation | The public revocation registry, or the validity status proof, does not expose any credential identifier |
-| Recital (9) and Article 7(4) CIR 2024/2979; Topic G HLR | Validity status must be verifiable without exposing revocation identifiers | Privacy-preserving revocation | Proving wallet unit attestation validity without creating a correlation handle |
+| Recital (9) and Article 7(4) CIR 2024/2979; Topic G HLR | Validity status must be verifiable without exposing revocation identifiers | Privacy-preserving revocation | Proving wallet unit attestation validity without creating a correlation handle; proving that the presented attributes are from an attestation that has not been revoked |
 | Article 5(8) CIR 2024/2977 | Full PID presentation unlinkability when user identification is not required | Multi-show full unlinkability | All PID presentations where the user does not need to identify itself |
 | Article 5a(5b, 16) Regulation (EU) 2024/1183; Topic G section 4.1 | Randomized proofs across EAA presentations to avoid correlation handles; no information about EAA use may reach the EAA provider | Multi-show full unlinkability | All EAA presentations where the user does not need to identify itself |
 | Recital (8) CIR 2024/2979 | Cross-relying-party unlinkability for wallet unit attestations; proofs freshly generated per session without pre-computation | Multi-show full unlinkability | All use cases where the user does not reveal identity (recommended for WUA) |
@@ -13,7 +13,6 @@
 | Article 3(5) CIR 2024/2977 | Proof of Possession must not introduce a static correlation handle across presentations | Unlinkable PoP | LoA High PID presentation |
 | Article 5a(5f) Regulation (EU) 2024/1183 | Prove that a signature validates with the public key in the attestation's PoP field | Hardware-bound PoP | LoA High PID presentation |
 | Article 14(2) CIR 2024/2979; Article 5a(4b) Regulation (EU) 2024/1183; Topic G section 4.1 | Support pseudonyms deterministically derived from an attribute in a credential without exposing the attribute itself | Pseudonym derivation | Identity-bound stable site-specific unlinkable pseudonyms dervied from a private seed and public context |
-
 
 ## Requirements without legal basis or that prescribe a solution-specific mechanism
 
