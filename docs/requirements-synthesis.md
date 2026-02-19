@@ -81,16 +81,16 @@ The purpose of this text is to use Annex 2 as a base for normalized requirements
 
 he numbering groups requirements by function: predicate proofs (01), validity status (02), key binding and PoP (04), unlinkability (05), issuer hiding (06), pseudonyms (07), performance (08), and format conformance (09). 
 
-There are four foundational predicate capabilities upon which other requirements often build:
+There are four predicate requirements:
 
-| #         | Normalized foundational requirement                                                                                                                                                                              |
+| #         | Normalized predicate requirement                                                                                                                                                                              |
 |-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ZKP_01.01 | The ZKP scheme SHALL generate a proof that an attribute equals a specified value, without revealing information beyond the truth value of the proven statement. |
 | ZKP_01.02 | The ZKP scheme SHALL generate a proof that an attribute satisfies a range predicate against a specified value, without revealing information beyond the truth value of the proven statement. |
 | ZKP_01.03 | The ZKP scheme SHALL generate a proof that an attribute is a member of a specified set, without revealing information beyond the truth value of the proven statement. |
 | ZKP_01.04 | The ZKP scheme SHALL generate a proof that two unrevealed attributes are equal, without revealing information beyond the truth value of the proven statement. |
 
-Enabled requirements related to validity status checks are:
+Requirements related to validity status checks are:
 
 | #         | Normalized validity status requirement |
 |-----------|---------------------------------------|
@@ -98,7 +98,7 @@ Enabled requirements related to validity status checks are:
 | ZKP_02.02 | The ZKP scheme SHALL generate a ZKP that an attestation has not been revoked at the time of verification. |
 | ZKP_02.03 | The ZKP scheme SHALL generate a ZKP of non-revocation against published revocation status data |
 
-Enabled requirements related to Proof of Possession and Issuer signature proofs:
+Requirements related to Proof of Possession and Issuer signature proofs:
 
 | #         | Normalized credential binding proof requirement |
 |-----------|-------------------------------------------|
@@ -106,7 +106,7 @@ Enabled requirements related to Proof of Possession and Issuer signature proofs:
 | ZKP_03.02 | The ZKP scheme SHALL ensure that the Proof of Possession does not include static or reusable elements that enable linking presentations to the same user. |
 | ZKP_03.03 | A ZKP scheme claiming conformance for LoA High presentations SHALL generate a ZKP of a valid Issuer signature. |
 
-Enabled unlinkability requirements that apply when user identification is not required:
+Unlinkability requirements that apply when user identification is not required:
 
 | #         | Normalized unlinkability requirement |
 |-----------|--------------------------------------|
@@ -115,20 +115,20 @@ Enabled unlinkability requirements that apply when user identification is not re
 
 ZKP_04.02 explicitly addresses issuer-verifier collusion as an adversary model, consistent with TR84 in the threat register. This represents a stronger adversarial assumption than those used by salted attribute digest based approaches, which is appropriate given the full unlinkability capabilities of ZKP schemes in scope for this specification.
 
-The enabled issuer hiding requirement is:
+The Issuer hiding requirement is:
 
 | #         | Normalized issuer hiding requirement |
 |-----------|--------------------------------------|
 | ZKP_05.01 | The ZKP scheme SHOULD generate a proof that the Issuer is trusted for the given type, without revealing the Issuer's identity. |
 
-Enabled pseudonym requirements for identity-bound stable and site-specific pseudonyms:
+Pseudonym requirements for identity-bound stable and site-specific pseudonyms:
 
 | #         | Normalized pseudonym requirement |
 |-----------|----------------------------------|
 | ZKP_06.01 | The ZKP scheme SHOULD support the derivation of a unique and verifiable pseudonym by combining a unique hidden user attribute with a public context value provided by the verifier and possibly other inputs. |
 | ZKP_06.02 | For pseudonyms derived under ZKP_06.01, where no party is permitted to reverse the pseudonym to the user's identity, the ZKP scheme SHALL ensure that doing so is infeasible. |
 
-Enabled requirements related to cross-credential binding:
+Requirements related to cross-credential binding:
 
 | #         | Normalized cross-credential binding requirement |
 |-----------|------------------------------------------------|
