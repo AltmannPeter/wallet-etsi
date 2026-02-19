@@ -94,16 +94,17 @@ Enabled requirements related to validity status checks are:
 
 | #         | Normalized validity status requirement |
 |-----------|---------------------------------------|
-| ZKP_02.01 | The ZKP scheme SHALL generate a proof that an attribute representing a validity period satisfies a predicate against a reference time provided at verification, without revealing information beyond the truth value of the proven statement. |
-| ZKP_02.02 | The ZKP scheme SHALL generate a proof that an attestation has not been revoked at the time of verification. |
-| ZKP_02.03 | The ZKP scheme SHALL generate a proof of non-revocation against published revocation status data without revealing information that could link the proof to a specific user. |
+| ZKP_02.01 | The ZKP scheme SHALL generate a ZKP that an attribute representing a validity period satisfies a predicate against a reference time provided at verification. |
+| ZKP_02.02 | The ZKP scheme SHALL generate a ZKP that an attestation has not been revoked at the time of verification. |
+| ZKP_02.03 | The ZKP scheme SHALL generate a ZKP of non-revocation against published revocation status data |
 
-Enabled requirements related to Proof of Possession:
+Enabled requirements related to Proof of Possession and Issuer signature proofs:
 
-| #         | Normalized Proof of Possession requirement |
+| #         | Normalized credential binding proof requirement |
 |-----------|-------------------------------------------|
-| ZKP_03.01 | The ZKP scheme SHALL generate a Proof of Possession of the key referenced in the attestation key binding field. |
+| ZKP_03.01 | The ZKP scheme SHALL generate a ZKP of Proof of Possession of the key referenced in the attestation key binding field. |
 | ZKP_03.02 | The ZKP scheme SHALL ensure that the Proof of Possession does not include static or reusable elements that enable linking presentations to the same user. |
+| ZKP_03.03 | A ZKP scheme claiming conformance for LoA High presentations SHALL generate a ZKP of a valid Issuer signature. |
 
 Enabled unlinkability requirements that apply when user identification is not required:
 
@@ -131,7 +132,7 @@ Enabled requirements related to cross-credential binding:
 
 | #         | Normalized cross-credential binding requirement |
 |-----------|------------------------------------------------|
-| ZKP_07.01 | The ZKP scheme SHOULD generate a proof that an attribute in an attestation and an attribute in a PID are equal, without revealing information beyond the truth value of the proven statement. |
+| ZKP_07.01 | The ZKP scheme SHOULD generate a proof that an attribute in an attestation and an attribute in a PID are equal. |
 
 ## Implementation and conformance requirements
 
@@ -148,14 +149,10 @@ The following requirements apply to implementations and profiles of the ZKP sche
 
 | #          | Requirement |
 |------------|-------------|
-| ZKP_C.03 | The ZKP profile SHALL support the generation of proofs for PID formatted in accordance with the PID Rulebook. |
-| ZKP_C.04 | The ZKP profile SHALL support the generation of proofs for (Q)EAAs formatted in accordance with their respective applicable Rulebooks. |
+| ZKP_C.03 | The ZKP scheme claiming conformance for PID presentation SHALL support the generation of proofs for PIDs in accordance with the credential formats defined in the PID Rulebook. |
+| ZKP_C.04 | A ZKP scheme claiming conformance for (Q)EAA presentations SHALL support the generation of proofs for (Q)EAAs in accordance with the credential format defined in their respective applicable Rulebooks.|
 
-### Issuer and platform requirements
-
-| #          | Requirement |
-|------------|-------------|
-| ZKP_C.05 | The issuer SHALL support issuance of attestations using a hardware-protected key as required for Level of Assurance High compliant eID schemes. |
+> The original Annex 2 `ZKP_06` uses SHOULD, scoped to ISO/IEC 18013-5 and SD-JWT VC. The modality is strengthened to SHALL here on the basis that every deployment context has a mandatory rulebook that defines allowed formats. A ZKP scheme that does not conform to the applicable rulebook formats cannot be deployed in any compliant use case.
 
 ### Requirements better defined elsewhere
 
