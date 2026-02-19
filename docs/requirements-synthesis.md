@@ -62,3 +62,87 @@ REQUIREMENT 4 conflates the mechanism with the requirement. Hiding the attribute
 
 * The ZKP scheme SHOULD support the derivation of a unique and verifiable pseudonym by combining a unique hidden user attribute with a public context value provided by the verifier and possibly other inputs.
 * If the pseudonym configuration does not support unmasking, the ZKP scheme SHALL ensure that reversing the pseudonym to a user identifying attribute is infeasible.
+
+## ZKP requirements for Annex 2
+
+[Annex 2 Section A.2.3.31 Topic 53](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/annexes/annex-2/annex-2.02-high-level-requirements-by-topic.md#a2331-topic-53-zero-knowledge-proofs) lists requirements for ZKP. These requirements have several flaws, including but not limited to:
+
+* Not atomic — Multiple independent functions grouped under a single requirement.
+* Mixed modalities — SHALL and SHOULD combined within the same requirement.
+* Layer violations — Cryptographic scheme requirements mixed with wallet, protocol, UX, or compliance concerns.
+* Vague terminology — Undefined or ambiguous terms used normatively.
+* Non-testable statements — Qualitative language without measurable criteria.
+* Missing threat model — No defined adversary capabilities or security assumptions.
+* Implementation coupling — Requirements tied to specific implementations rather than scheme-level properties.
+
+The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS. The numbering groups requirements by function: predicate proofs (01), validity status (02), key binding and PoP (04), unlinkability (05), issuer hiding (06), pseudonyms (07), performance (08), and format conformance (09). 
+
+There are four foundational predicate capabilities upon which other requirements often build:
+
+| #         | Normalized foundational requirement                                                                                                                                                                              |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ZKP_01.01 | The ZKP scheme SHALL generate a proof that an attribute equals a specified value, without revealing information beyond the truth value of the proven statement. |
+| ZKP_01.02 | The ZKP scheme SHALL generate a proof that an attribute satisfies a range predicate against a specified reference value, without revealing information beyond the truth value of the proven statement. |
+| ZKP_01.03 | The ZKP scheme SHALL generate a proof that an attribute is a member of a specified set, without revealing information beyond the truth value of the proven statement. |
+| ZKP_01.04 | The ZKP scheme SHALL generate a proof that two attributes are equal, without revealing information beyond the truth value of the proven statement. |
+
+Enabled requirements related to validity status checks are:
+
+| #         | Normalized validity status requirement |
+|-----------|---------------------------------------|
+| ZKP_02.01 | The ZKP scheme SHALL generate a proof that an attribute representing a validity period satisfies a predicate against a reference time provided at verification, without revealing information beyond the truth value of the proven statement. |
+| ZKP_02.02 | The ZKP scheme SHALL generate a proof that an attestation has not been revoked at the time of verification. |
+| ZKP_02.03 | The ZKP scheme SHALL generate a proof of non-revocation against a revocation object without revealing information that could link the proof to a specific user. |
+
+Enabled requirements related to Proof of Possession:
+
+| #         | Normalized Proof of Possession requirement |
+|-----------|-------------------------------------------|
+| ZKP_03.01 | The ZKP scheme SHALL generate a Proof of Possession of the key referenced in the attestation binding field. |
+| ZKP_03.02 | The ZKP scheme SHALL ensure that the Proof of Possession proof does not include static or reusable elements that enable linking presentations to the same user. |
+
+Enabled unlinkability requirements that apply when user identification is not required:
+
+| #         | Normalized unlinkability requirement |
+|-----------|--------------------------------------|
+| ZKP_04.01 | The ZKP scheme SHALL NOT include static or reusable elements in proof presentations that enable linking independent presentations to the same user. |
+| ZKP_04.02 | The ZKP scheme SHALL ensure that unlinkability holds under collusion between issuers and verifiers, such that no combination of data observable by colluding parties enables linking presentations to the same user. |
+
+ZKP_04.02 explicitly addresses issuer-verifier collusion as an adversary model, consistent with TR84 in the threat register. This represents a stronger adversarial assumption than those used by salted attribute digest based approaches, which is appropriate given the full unlinkability capabilities of ZKP schemes in scope for this specification.
+
+The enabled issuer hiding requirement is:
+
+| #         | Normalized issuer hiding requirement |
+|-----------|--------------------------------------|
+| ZKP_05.01 | The ZKP scheme SHOULD generate a proof that the Issuer is trusted for the given type, without revealing the Issuer's identity. |
+
+Enabled pseudonym requirements for identity-bound stable and site-specific pseudonyms:
+
+| #         | Normalized pseudonym requirement |
+|-----------|----------------------------------|
+| ZKP_06.01 | The ZKP scheme SHOULD support the derivation of a unique and verifiable pseudonym by combining a unique hidden user attribute with a public context value provided by the verifier and possibly other inputs. |
+| ZKP_06.02 | For pseudonyms derived under ZKP_06.01, where no party is permitted to reverse the pseudonym to the user's identity, the ZKP scheme SHALL ensure that doing so is infeasible. |
+
+## Implementation and conformance requirements
+
+The following requirements apply to implementations and profiles of the ZKP scheme rather than to the scheme itself. They are separated here to maintain the layer boundary established throughout this specification.
+
+### Cryptographic and performance conformance
+
+| #          | Requirement |
+|------------|-------------|
+| ZKP_C.01 | Implementations SHALL use only algorithms recognized by European Commission standards. |
+| ZKP_C.02 | The ZKP profile SHALL declare conformance to one or more performance tiers as defined in ETSI TS 119 476-2. |
+
+### Format conformance
+
+| #          | Requirement |
+|------------|-------------|
+| ZKP_C.03 | The ZKP profile SHALL support the generation of proofs for PID formatted in accordance with the PID Rulebook. |
+| ZKP_C.04 | The ZKP profile SHALL support the generation of proofs for (Q)EAAs formatted in accordance with their respective applicable Rulebooks. |
+
+### Issuer and platform requirements
+
+| #          | Requirement |
+|------------|-------------|
+| ZKP_C.05 | The issuer SHALL support issuance of attestations using a hardware-protected key. |
