@@ -14,9 +14,17 @@
 
 The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS. It includes both normalized requirements, and a justification when a requirement is dropped.
 
-### Normalized requirements in Annex 2
+The normalized requirements build on three Appendices. 
 
-he numbering groups requirements by function: predicate proofs (01), validity status (02), key binding and PoP (04), unlinkability (05), issuer hiding (06), pseudonyms (07), performance (08), and format conformance (09). 
+1. Appendix 1 includes a mapping that shows how the normalized requirements map to, and from, the original Annex 2 requirements.
+2. Appendix 2 includes the sources used for deriving the normalized requirements.
+3. Appendix 3 is an extended mapping to legal texts, operational and conformance requirements, and threat registers that are mapped to privacy requirments, and then to ZKP requirements.
+
+Next, the normalized requirements are presented, followed by the Appendecies. 
+
+### Normalized requirements from Annex 2
+
+The numbering groups requirements by function: predicate proofs (01), validity status (02), key binding and PoP (03), unlinkability (04), issuer hiding (05), pseudonyms (06), cross-credential binding (07). performance (08), and format conformance (C). 
 
 There are four predicate requirements:
 
