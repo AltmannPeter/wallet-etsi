@@ -75,7 +75,7 @@ REQUIREMENT 4 conflates the mechanism with the requirement. Hiding the attribute
 * Missing threat model — No defined adversary capabilities or security assumptions.
 * Implementation coupling — Requirements tied to specific implementations rather than scheme-level properties.
 
-The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS. The next section presents the normalized requirements, which is then followed by a section that discusses the requirements that were dropped.
+The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS. It includes both normalized requirements, and a justification when a requirement is dropped.
 
 ### Normalized requirements in Annex 2
 
@@ -161,3 +161,63 @@ The original Annex 2 requirement `ZKP_05` addresses two distinct concerns: trans
 > A ZKP scheme SHALL be usable in both remote and proximity presentation flows. While the inclusion of ZKP will introduce computational and verification delays, these delays SHALL NOT critically undermine or defeat the purpose of the Relying Party service (e.g. because of a critical impact on the User experience of the Wallet Unit). - `ZKP_05`
 
 These are legitimate concerns but are not ZKP scheme-level requirements. Transport layer requirements are outside the scope of ZKP scheme requirements and must be addressed in the relevant transport and protocol requirements. Relatedly, performance impact is addressed through the performance tier framework defined in ETSI TS 119 476-2. A ZKP scheme declaring conformance to a performance tier as detailed above in `ZKP_C.02`. Conformance to a performance tier provides implementers with the information needed to assess suitability for a given deployment context.
+
+# Appendicies
+
+## Appendix 1 - Mapping from Annex 2 to the derived requirements
+
+Mapping from original Annex 2 requirement to normalized requirement
+
+| Annex 2 requirement | Synthesis coverage |
+|--------------------|--------------------|
+| ZKP_01(i) | ZKP_01.01 |
+| ZKP_01(ii) | ZKP_01.02; ZKP_02.01 |
+| ZKP_01(iii) | ZKP_02.02; ZKP_02.03 |
+| ZKP_01(iv) | ZKP_03.01; ZKP_03.02 |
+| ZKP_01(v) | ZKP_05.01 |
+| ZKP_01 preamble | ZKP_01.01; ZKP_01.02; ZKP_01.03; ZKP_01.04 |
+| ZKP_02 | ZKP_03.01 |
+| ZKP_03 outer | ZKP_07.01 |
+| ZKP_03 inner | ZKP_01.04; ZKP_07.01 |
+| ZKP_04 outer | ZKP_06.01 |
+| ZKP_04 inner | ZKP_06.02 |
+| ZKP_05 | N/A as requirement better defined elsewhere |
+| ZKP_06 | ZKP_C.03; ZKP_C.04 |
+| ZKP_07 | ZKP_04.01; ZKP_03.02 |
+| ZKP_08 | ZKP_C.01 |
+| ZKP_09 | ZKP_03.01; ZKP_03.02; ZKP_03.03 |
+
+Mapping from normalized requirement to original Annex 2 requirement
+
+| Synthesis requirement | Annex 2 mapping |
+|----------------------|-----------------|
+| ZKP_01.01 | ZKP_01(i) |
+| ZKP_01.02 | ZKP_01(ii) |
+| ZKP_01.03 | No direct Annex 2 mapping; grounded in Recital 14 and Topic G |
+| ZKP_01.04 | ZKP_03 inner |
+| ZKP_02.01 | ZKP_01(ii) |
+| ZKP_02.02 | ZKP_01(iii) |
+| ZKP_02.03 | ZKP_01(iii) |
+| ZKP_03.01 | ZKP_01(iv); ZKP_02 |
+| ZKP_03.02 | ZKP_07 |
+| ZKP_03.03 | ZKP_09 |
+| ZKP_04.01 | ZKP_07 |
+| ZKP_04.02 | No direct Annex 2 mapping; grounded in TR84 and Topic G |
+| ZKP_05.01 | ZKP_01(v) |
+| ZKP_06.01 | ZKP_04 outer |
+| ZKP_06.02 | ZKP_04 inner |
+| ZKP_07.01 | ZKP_03 outer |
+| ZKP_C.01 | ZKP_08 |
+| ZKP_C.02 | No direct Annex 2 mapping; grounded in Topic G HLR |
+| ZKP_C.03 | ZKP_06 |
+| ZKP_C.04 | ZKP_06 |
+
+## Appendix 2 - Analysis of legal texts and related material
+
+The following documents derived requirements from legal text:
+
+* https://github.com/AltmannPeter/wallet-etsi/blob/main/docs/cir-2024-2977.md
+* https://github.com/AltmannPeter/wallet-etsi/blob/main/docs/cir-2024-2979.md
+* https://github.com/AltmannPeter/wallet-etsi/blob/main/docs/additional-sources.md
+* https://github.com/AltmannPeter/wallet-etsi/blob/main/docs/topic-g.md
+* https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/annexes/annex-2/annex-2.02-high-level-requirements-by-topic.md#a2331-topic-53-zero-knowledge-proofs
