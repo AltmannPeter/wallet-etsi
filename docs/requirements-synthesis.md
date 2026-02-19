@@ -75,7 +75,11 @@ REQUIREMENT 4 conflates the mechanism with the requirement. Hiding the attribute
 * Missing threat model — No defined adversary capabilities or security assumptions.
 * Implementation coupling — Requirements tied to specific implementations rather than scheme-level properties.
 
-The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS. The numbering groups requirements by function: predicate proofs (01), validity status (02), key binding and PoP (04), unlinkability (05), issuer hiding (06), pseudonyms (07), performance (08), and format conformance (09). 
+The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS. The next section presents the normalized requirements, which is then followed by a section that discusses the requirements that were dropped.
+
+### Normalized requirements in Annex 2
+
+he numbering groups requirements by function: predicate proofs (01), validity status (02), key binding and PoP (04), unlinkability (05), issuer hiding (06), pseudonyms (07), performance (08), and format conformance (09). 
 
 There are four foundational predicate capabilities upon which other requirements often build:
 
@@ -123,6 +127,12 @@ Enabled pseudonym requirements for identity-bound stable and site-specific pseud
 | ZKP_06.01 | The ZKP scheme SHOULD support the derivation of a unique and verifiable pseudonym by combining a unique hidden user attribute with a public context value provided by the verifier and possibly other inputs. |
 | ZKP_06.02 | For pseudonyms derived under ZKP_06.01, where no party is permitted to reverse the pseudonym to the user's identity, the ZKP scheme SHALL ensure that doing so is infeasible. |
 
+Enabled requirements related to cross-credential binding:
+
+| #         | Normalized cross-credential binding requirement |
+|-----------|------------------------------------------------|
+| ZKP_07.01 | The ZKP scheme SHOULD generate a proof that an attribute in an attestation and an attribute in a PID are equal, without revealing information beyond the truth value of the proven statement. |
+
 ## Implementation and conformance requirements
 
 The following requirements apply to implementations and profiles of the ZKP scheme rather than to the scheme itself. They are separated here to maintain the layer boundary established throughout this specification.
@@ -146,3 +156,11 @@ The following requirements apply to implementations and profiles of the ZKP sche
 | #          | Requirement |
 |------------|-------------|
 | ZKP_C.05 | The issuer SHALL support issuance of attestations using a hardware-protected key as required for Level of Assurance High compliant eID schemes. |
+
+### Requirements better defined elsewhere
+
+The original Annex 2 requirement `ZKP_05` addresses two distinct concerns: transport layer compatibility and performance impact:
+
+> A ZKP scheme SHALL be usable in both remote and proximity presentation flows. While the inclusion of ZKP will introduce computational and verification delays, these delays SHALL NOT critically undermine or defeat the purpose of the Relying Party service (e.g. because of a critical impact on the User experience of the Wallet Unit). - `ZKP_05`
+
+These are legitimate concerns but are not ZKP scheme-level requirements. Transport layer requirements are outside the scope of ZKP scheme requirements and must be addressed in the relevant transport and protocol requirements. Relatedly, performance impact is addressed through the performance tier framework defined in ETSI TS 119 476-2. A ZKP scheme declaring conformance to a performance tier as detailed above in `ZKP_C.02`. Conformance to a performance tier provides implementers with the information needed to assess suitability for a given deployment context.
