@@ -20,6 +20,8 @@ The normalized requirements build on three Appendices.
 2. Appendix 2 includes the sources used for deriving the normalized requirements.
 3. Appendix 3 is an extended mapping to legal texts, operational and conformance requirements, and threat registers that are mapped to privacy requirments, and then to ZKP requirements.
 
+Note that the contents in Appendix 2 and Appendix 3 may differ from the final synthesis and are provided only for method transparency reasons.
+
 Next, the normalized requirements are presented, followed by the Appendecies. 
 
 ### Normalized requirements from Annex 2
