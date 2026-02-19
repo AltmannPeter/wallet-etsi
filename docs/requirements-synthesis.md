@@ -1,4 +1,6 @@
-# Dervied ZKP requirements from the legal sources and ARF
+# Deriving ZKP requirements
+
+## Legal obligations and ZKP requirements
 
 | Source | Mapping | ZKP requirement | Use case example |
 |--------|---------|-----------------|------------------|
@@ -14,9 +16,20 @@
 | Article 5a(5f) Regulation (EU) 2024/1183 | Prove that a signature validates with the public key in the attestation's PoP field | Hardware-bound PoP | LoA High PID presentation |
 | Article 14(2) CIR 2024/2979; Article 5a(4b) Regulation (EU) 2024/1183; Topic G section 4.1 | Support pseudonyms deterministically derived from an attribute in a credential without exposing the attribute itself | Pseudonym derivation | Identity-bound stable site-specific unlinkable pseudonyms dervied from a private seed and public context |
 
-## Requirements without legal basis or that prescribe a solution-specific mechanism
+### Operational and conformance obligations and related ZKP requirements
 
-### Blind issuance
+| Requirement | Source | Strength |
+|-------------|--------|----------|
+| The ZKP scheme SHALL support the generation of a proof that binds a credential to a specific user-controlled cryptographic key via a proof of possession | Topic G HLR; Article 5a(5d) Regulation (EU) 2024/1183 | MUST |
+| The ZKP scheme SHALL support issuance using a hardware-protected key | Topic G HLR; Article 5a(5d) Regulation (EU) 2024/1183 | MUST |
+| The ZKP scheme SHALL use only algorithms recognized by European Commission standards | Topic G HLR; eIDAS cryptographic requirements | MUST |
+| The ZKP scheme SHALL declare conformance to one or more performance tiers as defined in ETSI TS 119 476-2 | Topic G HLR | MUST |
+| The ZKP scheme SHALL support the generation of proofs for PID formatted in accordance with the PID Rulebook | Topic G HLR | MUST |
+| The ZKP scheme SHALL support the generation of proofs for (Q)EAAs formatted in accordance with their respective applicable Rulebooks | Topic G HLR | MUST |
+
+### Requirements without legal basis or that prescribe a solution-specific mechanism
+
+#### Blind issuance
 
 Topic G introduces blind issuance as an additional privacy property in Section 2:
 
