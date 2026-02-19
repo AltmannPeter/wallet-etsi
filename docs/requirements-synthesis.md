@@ -82,9 +82,9 @@ There are four foundational predicate capabilities upon which other requirements
 | #         | Normalized foundational requirement                                                                                                                                                                              |
 |-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ZKP_01.01 | The ZKP scheme SHALL generate a proof that an attribute equals a specified value, without revealing information beyond the truth value of the proven statement. |
-| ZKP_01.02 | The ZKP scheme SHALL generate a proof that an attribute satisfies a range predicate against a specified reference value, without revealing information beyond the truth value of the proven statement. |
+| ZKP_01.02 | The ZKP scheme SHALL generate a proof that an attribute satisfies a range predicate against a specified value, without revealing information beyond the truth value of the proven statement. |
 | ZKP_01.03 | The ZKP scheme SHALL generate a proof that an attribute is a member of a specified set, without revealing information beyond the truth value of the proven statement. |
-| ZKP_01.04 | The ZKP scheme SHALL generate a proof that two attributes are equal, without revealing information beyond the truth value of the proven statement. |
+| ZKP_01.04 | The ZKP scheme SHALL generate a proof that two unrevealed attributes are equal, without revealing information beyond the truth value of the proven statement. |
 
 Enabled requirements related to validity status checks are:
 
@@ -92,14 +92,14 @@ Enabled requirements related to validity status checks are:
 |-----------|---------------------------------------|
 | ZKP_02.01 | The ZKP scheme SHALL generate a proof that an attribute representing a validity period satisfies a predicate against a reference time provided at verification, without revealing information beyond the truth value of the proven statement. |
 | ZKP_02.02 | The ZKP scheme SHALL generate a proof that an attestation has not been revoked at the time of verification. |
-| ZKP_02.03 | The ZKP scheme SHALL generate a proof of non-revocation against a revocation object without revealing information that could link the proof to a specific user. |
+| ZKP_02.03 | The ZKP scheme SHALL generate a proof of non-revocation against published revocation status data without revealing information that could link the proof to a specific user. |
 
 Enabled requirements related to Proof of Possession:
 
 | #         | Normalized Proof of Possession requirement |
 |-----------|-------------------------------------------|
-| ZKP_03.01 | The ZKP scheme SHALL generate a Proof of Possession of the key referenced in the attestation binding field. |
-| ZKP_03.02 | The ZKP scheme SHALL ensure that the Proof of Possession proof does not include static or reusable elements that enable linking presentations to the same user. |
+| ZKP_03.01 | The ZKP scheme SHALL generate a Proof of Possession of the key referenced in the attestation key binding field. |
+| ZKP_03.02 | The ZKP scheme SHALL ensure that the Proof of Possession does not include static or reusable elements that enable linking presentations to the same user. |
 
 Enabled unlinkability requirements that apply when user identification is not required:
 
@@ -131,7 +131,7 @@ The following requirements apply to implementations and profiles of the ZKP sche
 
 | #          | Requirement |
 |------------|-------------|
-| ZKP_C.01 | Implementations SHALL use only algorithms recognized by European Commission standards. |
+| ZKP_C.01 | Implementations of the ZKP scheme SHALL use only cryptographic algorithms listed in the ECCG Agreed Cryptographic Mechanisms. |
 | ZKP_C.02 | The ZKP profile SHALL declare conformance to one or more performance tiers as defined in ETSI TS 119 476-2. |
 
 ### Format conformance
@@ -145,4 +145,4 @@ The following requirements apply to implementations and profiles of the ZKP sche
 
 | #          | Requirement |
 |------------|-------------|
-| ZKP_C.05 | The issuer SHALL support issuance of attestations using a hardware-protected key. |
+| ZKP_C.05 | The issuer SHALL support issuance of attestations using a hardware-protected key as required for Level of Assurance High compliant eID schemes. |
