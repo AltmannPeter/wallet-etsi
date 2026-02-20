@@ -26,7 +26,7 @@ Next, the normalized requirements are presented, followed by the Appendecies.
 
 ### Normalized requirements from Annex 2
 
-The numbering groups requirements by function: predicate proofs (01), validity status (02), key binding and PoP (03), unlinkability (04), issuer hiding (05), pseudonyms (06), cross-credential binding (07). performance (08), and format conformance (C). 
+The numbering groups requirements by function: predicate proofs (01), validity status (02), key binding and PoP (03), unlinkability (04), issuer hiding (05), pseudonyms (06), cross-credential binding (07). performance (08), and conformance (C). 
 
 There are four predicate requirements:
 
