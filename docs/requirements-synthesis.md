@@ -35,7 +35,7 @@ There are four predicate requirements:
 | ZKP_01.01 | The ZKP scheme SHALL generate a proof that an attribute equals a specified value, without revealing information beyond the truth value of the proven statement. |
 | ZKP_01.02 | The ZKP scheme SHALL generate a proof that an attribute satisfies a range predicate against a specified value, without revealing information beyond the truth value of the proven statement. |
 | ZKP_01.03 | The ZKP scheme SHALL generate a proof that an attribute is a member of a specified set, without revealing information beyond the truth value of the proven statement. |
-| ZKP_01.04 | If ZKP_07.01 applies, the ZKP scheme SHALL generate a proof that two unrevealed attributes are equal, without revealing information beyond the truth value of the proven statement. |
+| ZKP_01.04 | If cross-credential binding (ZKP_07.01) applies, the ZKP scheme SHALL generate a proof that two unrevealed attributes are equal, without revealing information beyond the truth value of the proven statement. |
 
 Requirements related to validity status checks are:
 
