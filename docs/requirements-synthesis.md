@@ -3,6 +3,7 @@
 ## ZKP requirements for Annex 2
 
 [Annex 2 Section A.2.3.31 Topic 53](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/annexes/annex-2/annex-2.02-high-level-requirements-by-topic.md#a2331-topic-53-zero-knowledge-proofs) lists requirements for ZKP. These requirements have several flaws, including but not limited to:
+*SR: the above link references the `main` branch, so the linked document can change whenever updates to the ARF are pushed. You probably want to link to a specific commit so that your statement doesn't stop being true if they would fix the issues you mention.*
 
 * Not atomic — Multiple independent functions grouped under a single requirement.
 * Mixed modalities — SHALL and SHOULD combined within the same requirement.
@@ -41,24 +42,24 @@ Requirements related to validity status checks are:
 
 | #         | Normalized validity status requirement |
 |-----------|---------------------------------------|
-| ZKP_02.01 | The ZKP scheme SHALL generate a ZKP that an attribute representing a validity period satisfies a predicate against a reference time provided at verification. |
-| ZKP_02.02 | The ZKP scheme SHALL generate a ZKP that an attestation has not been revoked at the time of verification. |
-| ZKP_02.03 | The ZKP scheme SHALL generate a ZKP of non-revocation against published revocation status data |
+| ZKP_02.01 | Of an attribute representing a validity period, the ZKP scheme SHALL generate a ZKP that it satisfies a predicate against a reference time provided at verification.<br>*SR: the previous phrasing suggests that the scheme shall present a ZKP saying that the attribute (1) represents a validity period and (2) satisfies a predicate, whereas in actuality, (1) is context coming from the outside from the perspective of the ZKP scheme.* |
+| ZKP_02.02 | The ZKP scheme SHALL generate a ZKP that an attestation has not been revoked at the time of verification.<br>*SR: This might be too restrictive: not all approaches suggested in TS14 consist of actual ZKPs. Also: you generally show that the attestation is not revoked within an epoch; it is generally not instant, as the current phrasing suggests.* |
+| ZKP_02.03 | The ZKP scheme SHALL generate a ZKP of non-revocation against published revocation status data.<br>*SR: what does this requirement add, given that we already have ZKP_02.02?* |
 
 Requirements related to Proof of Possession and Issuer signature proofs:
 
 | #         | Normalized credential binding proof requirement |
 |-----------|-------------------------------------------|
 | ZKP_03.01 | The ZKP scheme SHALL generate a ZKP of Proof of Possession of the key referenced in the attestation key binding field. |
-| ZKP_03.02 | The ZKP scheme SHALL ensure that the Proof of Possession does not include static or reusable elements that enable linking presentations to the same user. |
-| ZKP_03.03 | A ZKP scheme claiming conformance for LoA High presentations SHALL generate a ZKP of a valid Issuer signature. |
+| ZKP_03.02 | The ZKP scheme SHALL ensure that the Proof of Possession does not include static or reusable elements that enable linking presentations to the same user.<br>*SR: what does "static or reusable" mean? Isn't the remainder of the sentence after those words sufficient?* |
+| ZKP_03.03 | A ZKP scheme claiming conformance for LoA High presentations SHALL generate a ZKP of a valid Issuer signature.<br>*SR: did you mean an ECDSA signature here? Any BBS attestation will always have a BBS signature.* |
 
 Unlinkability requirements that apply when user identification is not required:
 
 | #         | Normalized unlinkability requirement |
 |-----------|--------------------------------------|
 | ZKP_04.01 | The ZKP scheme SHALL NOT include static or reusable elements in proof presentations that enable linking independent presentations to the same user. |
-| ZKP_04.02 | The ZKP scheme SHALL ensure that unlinkability holds under collusion between issuers and verifiers, such that no combination of data observable by colluding parties enables linking presentations to the same user. |
+| ZKP_04.02 | The ZKP scheme SHALL ensure that unlinkability holds under collusion between issuers and verifiers, such that no combination of data observable by colluding parties enables linking presentations or issuance to the same user. |
 
 ZKP_04.02 explicitly addresses issuer-verifier collusion as an adversary model, consistent with TR84 in the threat register. This represents a stronger adversarial assumption than those used by salted attribute digest based approaches, which is appropriate given the full unlinkability capabilities of ZKP schemes in scope for this specification.
 
@@ -66,13 +67,13 @@ The Issuer hiding requirement is:
 
 | #         | Normalized issuer hiding requirement |
 |-----------|--------------------------------------|
-| ZKP_05.01 | The ZKP scheme SHOULD generate a proof that the Issuer is trusted for the given type, without revealing the Issuer's identity. |
+| ZKP_05.01 | The ZKP scheme SHOULD generate a proof that the Issuer is trusted for the given type, without revealing the Issuer's identity.<br>*SR: "that the Issuer is trusted" is a bit vague. Don't these systems prove something along the lines of "that the Issuer is one of a set of trusted Issuers"?* |
 
 Pseudonym requirements for identity-bound stable and site-specific pseudonyms:
 
 | #         | Normalized pseudonym requirement |
 |-----------|----------------------------------|
-| ZKP_06.01 | The ZKP scheme SHOULD support the derivation of a unique and verifiable pseudonym by combining a unique hidden user attribute with a public context value provided by the verifier and possibly other inputs. |
+| ZKP_06.01 | The ZKP scheme SHOULD support the derivation of a unique and verifiable pseudonym by combining a unique hidden user attribute with a public context value provided by the verifier and possibly other inputs. *<br>SR: What is "verifiable"?* |
 | ZKP_06.02 | For pseudonyms derived under ZKP_06.01, where no party is permitted to reverse the pseudonym to the user's identity, the ZKP scheme SHALL ensure that doing so is infeasible. |
 
 Requirements related to cross-credential binding:
@@ -89,7 +90,7 @@ The following requirements apply to implementations and profiles of the ZKP sche
 
 | #          | Requirement |
 |------------|-------------|
-| ZKP_C.01 | Implementations of the ZKP scheme SHALL use only cryptographic algorithms listed in the ECCG Agreed Cryptographic Mechanisms. |
+| ZKP_C.01 | Implementations of the ZKP scheme SHALL use only cryptographic algorithms listed in the ECCG Agreed Cryptographic Mechanisms. <br>*SR: Does not yet include BBS(+), right?* |
 | ZKP_C.02 | The ZKP profile SHALL declare conformance to one or more performance tiers as defined in ETSI TS 119 476-2. |
 
 ### Format conformance
