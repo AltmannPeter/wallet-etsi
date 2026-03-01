@@ -51,8 +51,8 @@ Requirements related to Proof of Possession and Issuer signature proofs:
 | #         | Normalized credential binding proof requirement |
 |-----------|-------------------------------------------|
 | ZKP_03.01 | The ZKP scheme SHALL generate a ZKP of Proof of Possession of the key referenced in the attestation key binding field. |
-| ZKP_03.02 | The ZKP scheme SHALL ensure that the Proof of Possession does not include static or reusable elements that enable linking presentations to the same user.<br>*SR: what does "static or reusable" mean? Isn't the remainder of the sentence after those words sufficient?* |
-| ZKP_03.03 | A ZKP scheme claiming conformance for LoA High presentations SHALL generate a ZKP of a valid Issuer signature.<br>*SR: did you mean an ECDSA signature here? Any BBS attestation will always have a BBS signature.* |
+| ZKP_03.02 | A ZKP scheme claiming conformance for LoA High presentations SHALL generate a ZKP of a valid Issuer signature where the issuer signing key is hardware-protected. |
+
 
 Unlinkability requirements that apply when user identification is not required:
 
