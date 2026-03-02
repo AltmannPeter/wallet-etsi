@@ -2,7 +2,7 @@
 
 ## ZKP requirements for Annex 2
 
-[Annex 2 Section A.2.3.31 Topic 53](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/annexes/annex-2/annex-2.02-high-level-requirements-by-topic.md#a2331-topic-53-zero-knowledge-proofs) lists requirements for ZKP. The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS 119 476-2 work on ZKP for the EUDIW. This text includes both normalized requirements, and a justification when a requirement is dropped. 
+[Annex 2 Section A.2.3.31 Topic 53](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/annexes/annex-2/annex-2.02-high-level-requirements-by-topic.md#a2331-topic-53-zero-knowledge-proofs) lists requirements for ZKP. The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS 119 476-2 work on ZKP for the EUDIW. This text includes both normalized requirements, and a justification when a requirement is dropped. This text represents ongoing work.
 
 In addition to Annex 2, this text also includes a mapping excercise where legal obligations and other ARF texts are mapped to ZKP requirements. The ZKP requirements listed in this text are **not** meant to replace the ZKP requirements in the ARF Annex 2 text, any other ARF associated text, or any legal obligation. Instead, they are an attempt to interpret these texts by deriving well-formed software requirements that avoid:  
 
