@@ -2,18 +2,16 @@
 
 ## ZKP requirements for Annex 2
 
-[Annex 2 Section A.2.3.31 Topic 53](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/annexes/annex-2/annex-2.02-high-level-requirements-by-topic.md#a2331-topic-53-zero-knowledge-proofs) lists requirements for ZKP. These requirements have several flaws, including but not limited to:
-*SR: the above link references the `main` branch, so the linked document can change whenever updates to the ARF are pushed. You probably want to link to a specific commit so that your statement doesn't stop being true if they would fix the issues you mention.*
+[Annex 2 Section A.2.3.31 Topic 53](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/annexes/annex-2/annex-2.02-high-level-requirements-by-topic.md#a2331-topic-53-zero-knowledge-proofs) lists requirements for ZKP. The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS 119 476-2 work on ZKP for the EUDIW. This text includes both normalized requirements, and a justification when a requirement is dropped. 
 
-* Not atomic — Multiple independent functions grouped under a single requirement.
+In addition to Annex 2, this text also includes a mapping excercise where legal obligations and other ARF texts are mapped to ZKP requirements. The ZKP requirements listed in this text are **not** meant to replace the ZKP requirements in the ARF Annex 2 text, any other ARF associated text, or any legal obligation. Instead, they are an attempt to interpret these texts by deriving well-formed software requirements that avoid:  
+
+* Non-atomic requirements — Multiple independent functions grouped under a single requirement.
 * Mixed modalities — SHALL and SHOULD combined within the same requirement.
 * Layer violations — Cryptographic scheme requirements mixed with wallet, protocol, UX, or compliance concerns.
 * Vague terminology — Undefined or ambiguous terms used normatively.
 * Non-testable statements — Qualitative language without measurable criteria.
-* Missing threat model — No defined adversary capabilities or security assumptions.
 * Implementation coupling — Requirements tied to specific implementations rather than scheme-level properties.
-
-The purpose of this text is to use Annex 2 as a base for normalized requirements that can provide the foundation for the ETSI TS. It includes both normalized requirements, and a justification when a requirement is dropped.
 
 The normalized requirements build on three Appendices. 
 
